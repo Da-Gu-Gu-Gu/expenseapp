@@ -1,5 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import {StyleSheet, Text, View } from 'react-native'
 import ExpensesSummary from './ExpensesSummary'
 import ExpenseList from './ExpenseList'
 import { COLORS } from '../constants/colors'

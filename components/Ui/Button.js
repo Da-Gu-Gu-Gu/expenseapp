@@ -1,5 +1,4 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
 import { COLORS } from '../../constants/colors'
 
 const Button = ({children,onPress,mode,style}) => {

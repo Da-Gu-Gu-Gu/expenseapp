@@ -1,31 +1,28 @@
-import { StyleSheet, Text, View,FlatList,ScrollView } from 'react-native'
-import React from 'react'
-import ExpenseItem from './ExpenseItem'
-// import { ScrollView } from 'react-native-web'
+import { StyleSheet, View, FlatList } from "react-native";
+import React from "react";
+import ExpenseItem from "./ExpenseItem";
 
+const renderExpItem = (itemData) => {
+  return <ExpenseItem {...itemData.item} />;
+};
 
-const renderExpItem=(itemData)=>{
-    return (
-       <ExpenseItem {...itemData.item} />
-    )
-}
-
-const ExpenseList = ({expenses}) => {
+const ExpenseList = ({ expenses }) => {
   return (
     <View style={styles.container}>
-        <FlatList 
+      <FlatList
+        showsVerticalScrollIndicator={false}
         data={expenses}
         renderItem={renderExpItem}
-        keyExtractor={(item)=>item.id}
-            />
+        keyExtractor={(item) => item.id}
+      />
     </View>
-  )
-}
+  );
+};
 
-export default ExpenseList
+export default ExpenseList;
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
-    }
-})
+  container: {
+    flex: 1,
+  },
+});

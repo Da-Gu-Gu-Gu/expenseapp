@@ -1,5 +1,4 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
 import { COLORS } from '../constants/colors'
 
 const ExpensesSummary = ({expenses,periodName}) => {
@@ -27,7 +26,6 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'space-between',
         alignItems:'center',
-        // marginVertical:12,
     },
     period:{
         fontSize:12,

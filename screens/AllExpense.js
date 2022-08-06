@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { StyleSheet, Text, View,ScrollView } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import ExpenseOutput from '../components/ExpenseOutput'
 import { COLORS } from '../constants/colors'
 import { ExpensesContext } from '../store/expenses-context'
@@ -25,7 +25,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor:COLORS.bg,
-    // alignItems: 'center',
-    // justifyContent: 'center',
   },
 })
