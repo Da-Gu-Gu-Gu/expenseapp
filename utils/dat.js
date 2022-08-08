@@ -1,4 +1,8 @@
 export const getFormattedDate = (date) => {
+  return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+};
+
+export const getFormattedDate2 = (date) => {
   return date.toISOString().slice(0, 10);
 };
 

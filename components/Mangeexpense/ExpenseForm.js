@@ -3,16 +3,18 @@ import React, { useState } from "react";
 import Input from "./Input";
 import { COLORS } from "../../constants/colors";
 import Button from "../Ui/Button";
-import { getFormattedDate } from "../../utils/dat";
+import { getFormattedDate2 } from "../../utils/dat";
 
 const ExpenseForm = ({ onCancel, onSubmit, isEditing, defaultValues }) => {
+  console.log(defaultValues);
+
   const [inputs, setInputs] = useState({
     amount: {
       value: defaultValues ? defaultValues.amount.toString() : "",
       isValid: true,
     },
     date: {
-      value: defaultValues ? getFormattedDate(defaultValues.date) : "",
+      value: defaultValues ? getFormattedDate2(defaultValues.date) : "",
       isValid: true,
     },
     description: {
@@ -37,8 +39,11 @@ const ExpenseForm = ({ onCancel, onSubmit, isEditing, defaultValues }) => {
       description: inputs.description.value,
     };
 
+    console.log("aaaaa", expenseData);
+
     const amountIsValid = !isNaN(expenseData.amount) && expenseData.amount > 0;
-    const dateIsValid = expenseData.date.toString() === !"Invalid Date";
+    // console.log(expenseData.date.toString());
+    const dateIsValid = expenseData.date.toString() !== "Invalid Date";
     const descriptionIsValid = expenseData.description.trim().length > 0;
 
     if (amountIsValid && dateIsValid && descriptionIsValid) {
@@ -68,6 +73,7 @@ const ExpenseForm = ({ onCancel, onSubmit, isEditing, defaultValues }) => {
       <Text style={styles.title}>Your Expense</Text>
       <View style={styles.inputRows}>
         <Input
+          invalid={!inputs.amount.isValid}
           style={styles.rowInput}
           label={"Amount"}
           textInputConfig={{
@@ -77,6 +83,7 @@ const ExpenseForm = ({ onCancel, onSubmit, isEditing, defaultValues }) => {
           }}
         />
         <Input
+          invalid={!inputs.date.isValid}
           style={styles.rowInput}
           label={"Date"}
           textInputConfig={{
@@ -89,6 +96,7 @@ const ExpenseForm = ({ onCancel, onSubmit, isEditing, defaultValues }) => {
         />
       </View>
       <Input
+        invalid={!inputs.description.isValid}
         label={"Description"}
         textInputConfig={{
           multiline: true,
@@ -97,7 +105,7 @@ const ExpenseForm = ({ onCancel, onSubmit, isEditing, defaultValues }) => {
         }}
       />
       {formIsInvalid && (
-        <Text style={styles.invalid}>
+        <Text style={styles.errorText}>
           Invalid Input value - please check your enterd data!
         </Text>
       )}
@@ -117,7 +125,7 @@ export default ExpenseForm;
 
 const styles = StyleSheet.create({
   form: {
-    marginTop: 80,
+    marginTop: 30,
   },
   inputRows: {
     flexDirection: "row",
@@ -131,7 +139,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginVertical: 24,
     textAlign: "center",
-    // color: "white",
+    color: "white",
   },
   button: {
     minWidth: 120,
@@ -142,7 +150,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  invalid: {
-    color: COLORS.primary,
+  errorText: {
+    textAlign: "center",
+    color: COLORS.info,
+    margin: 8,
   },
 });
