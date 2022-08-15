@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
+import ImageList from "../ImageList";
+import Loading from "../Loading/Loading";
 
 const ColorTitle = ({ color, name }) => {
   return (
@@ -12,9 +14,10 @@ const ColorTitle = ({ color, name }) => {
 };
 
 const ColorDetail = ({ route, navigation }) => {
+  const [test, setTest] = useState(true);
+
   let colorCode = route.params.colorCode ? route.params.colorCode : "#e2e2";
   let name = route.params.name ? route.params.name : "Unknown";
-  console.log(route.params);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -30,9 +33,13 @@ const ColorDetail = ({ route, navigation }) => {
     });
   }, [navigation, name, colorCode]);
 
+  if (test) {
+    return <Loading color={colorCode} />;
+  }
+
   return (
     <View>
-      <Text>ColorDetail</Text>
+      <ImageList />
     </View>
   );
 };
